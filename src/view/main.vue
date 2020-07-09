@@ -1,55 +1,78 @@
+/*
+ * @Author: minchao 
+ * @Date: 2020-07-09 23:19:55 
+ * @Last Modified by: minchao
+ * @Last Modified time: 2020-07-10 00:43:38
+ */
+
 <template>
- <div>
-    
-
-    <!--中间内容-->
-    <div class="contanet">
-      中间内容
+  <div class="contanet">
+    <div class="top">
+      <van-image class="img" fit="none" src="../../static/img/main_bg.jpg" />
+      <div class="icon" >
+          <van-icon class="nav-icon" name="wap-nav" size=".48rem" color="#fff"/>
+          <!-- <van-icon name="wap-nav" /> -->
+      </div>
+      
     </div>
-
-  
- </div>
+  </div>
 </template>
 
 <script>
-import HeaderComponent from '../components/header.vue';
-import FooterComponent from '../components/footer.vue';
-import { mapState } from 'vuex';
+import Vue from "vue";
+import { Image as VanImage } from "vant";
+import { Icon } from "vant";
+
+Vue.use(VanImage);
+
+Vue.use(Icon);
+import { mapState } from "vuex";
 export default {
-  name: 'index',
-  data(){
-    return {
-      title:"顶部标题",
-      footercontent:"底部主题"
-    }
+  name: "index",
+  data() {
+    return {};
   },
-  props:[],
-  computed:mapState({
-        // wateritem: state => state.wateritem,
-        // fenglist : state => state.indexdata.styleTagList,
-        // stylelist : state => state.indexdata.scaneTagList,
-        // indeximg : state => state.indexdata.banner
+  props: [],
+  computed: mapState({
+    // wateritem: state => state.wateritem,
+    // fenglist : state => state.indexdata.styleTagList,
+    // stylelist : state => state.indexdata.scaneTagList,
+    // indeximg : state => state.indexdata.banner
   }),
-  created (){
+  created() {},
 
-  },
-
-  mounted (){
-    
-  },
-  methods:{
-    
-  },
-  components: {
-    HeaderComponent,
-    FooterComponent
-  }
-}
+  mounted() {},
+  methods: {},
+  components: {}
+};
 </script>
-<style scoped>
-.contanet{
+<style lang="less" scoped>
+.contanet {
   width: 100%;
-  height: 2rem;
-  background: #f60;
+  background: #ffffff;
+  .top {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    .img {
+      img {
+        width: 100%;
+      }
+    }
+    .icon {
+      position: absolute;
+      width: 0.78rem;
+      height: 0.78rem;
+      background: rgba(44, 114, 206, 0.8);
+      opacity: 1;
+      top: 0.38rem;
+      right: 0.3rem;
+      text-align: center;
+      .nav-icon{
+        line-height: .78rem;
+      }
+    }
+  }
 }
 </style>
