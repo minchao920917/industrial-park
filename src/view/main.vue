@@ -10,11 +10,15 @@
     <div class="top">
       <van-image class="img" fit="none" src="../../static/img/main_bg.jpg" />
       <div class="icon" >
-          <van-icon class="nav-icon" name="wap-nav" size=".48rem" color="#fff"/>
-          <!-- <van-icon name="wap-nav" /> -->
+          <van-icon class="nav-icon" name="wap-nav" size=".4rem" color="#fff"/>
       </div>
-      
     </div>
+    <!-- top end -->
+    <!-- 园区概况 start -->
+    <!-- <section class="section">
+      <sectionTitle></sectionTitle>
+    </section> -->
+    <!-- 园区概况 end -->
   </div>
 </template>
 
@@ -26,6 +30,8 @@ import { Icon } from "vant";
 Vue.use(VanImage);
 
 Vue.use(Icon);
+
+import sectionTitle from "../components/sectionTitle"
 import { mapState } from "vuex";
 export default {
   name: "index",
@@ -43,7 +49,9 @@ export default {
 
   mounted() {},
   methods: {},
-  components: {}
+  components: {
+    sectionTitle
+  }
 };
 </script>
 <style lang="less" scoped>
@@ -65,14 +73,18 @@ export default {
       width: 0.78rem;
       height: 0.78rem;
       background: rgba(44, 114, 206, 0.8);
-      opacity: 1;
       top: 0.38rem;
       right: 0.3rem;
       text-align: center;
+      // line-height: .78rem;
       .nav-icon{
-        line-height: .78rem;
+        // line-height: .78rem;
       }
     }
+  }
+  .section{
+    width: 100%;
+    overflow-x: hidden;
   }
 }
 </style>

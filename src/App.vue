@@ -24,15 +24,21 @@ export default {
   }
 }
 </script>
+<style lang="less" scoped>
 
-<style>
 @import './less/reset.less';
+.app{
+  max-width: 750px;
+  width: 7.5rem;
+  overflow-x: hidden;
+  margin: 0 auto;
 
-.fade-enter-active, .fade-leave-active {
-    -webkit-transition: all .3s ease;
-      transition: all .3s ease;
+  .fade-enter-active, .fade-leave-active {
+      -webkit-transition: all .3s ease;
+        transition: all .3s ease;
+    }
+  .fade-enter, .fade-leave-to {
+    opacity:0;
   }
-.fade-enter, .fade-leave-to {
-  opacity:0;
 }
 </style>
