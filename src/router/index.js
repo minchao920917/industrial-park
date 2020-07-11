@@ -2,6 +2,17 @@
 const main = r=>require.ensure([],()=>r(require('@/view/main.vue')),'main')
 //文章详情
 const detail = r=>require.ensure([],()=>r(require('@/view/detail.vue')),'detail')
+//联系我们
+const contact = r=>require.ensure([],()=>r(require('@/view/contact.vue')),'contact')
+//申请参观
+const apply = r=>require.ensure([],()=>r(require('@/view/apply.vue')),'apply')
+//视频列表
+const videos = r=>require.ensure([],()=>r(require('@/view/videos.vue')),'videos')
+//园区介绍
+const introduce = r=>require.ensure([],()=>r(require('@/view/introduce.vue')),'introduce')
+//招商政策
+const policy = r=>require.ensure([],()=>r(require('@/view/policy.vue')),'policy')
+
 //404
 const notfount = r=>require.ensure([],()=>r(require('@/view/404.vue')),'notfount')
 //路由
