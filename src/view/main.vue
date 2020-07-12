@@ -7,6 +7,7 @@
 
 <template>
   <div class="contanet">
+    <!-- top start -->
     <div class="top">
       <van-image class="img" fit="none" src="../../static/img/main_bg.jpg" />
       <div class="icon">
@@ -706,6 +707,7 @@ export default {
     }
   }
   //园区服务 end
+  // 联系我们 start
   .contact {
     height: 9.13rem;
     background: rgba(7, 32, 65, 1);
@@ -746,5 +748,6 @@ export default {
       }
     }
   }
+  // 联系我们 end
 }
 </style>

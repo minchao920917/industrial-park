@@ -42,6 +42,46 @@ export default new Router({
       ]
     },
     {
+      path:'/contact',
+      component:contact,
+      name:'联系我们',
+      children:[
+    //   {path:'/main/integral', component:integral},
+      ]
+    },
+    {
+      path:'/apply',
+      component:apply,
+      name:'申请参观',
+      children:[
+    //   {path:'/main/integral', component:integral},
+      ]
+    },
+    {
+      path:'/videos',
+      component:videos,
+      name:'园区视频',
+      children:[
+    //   {path:'/main/integral', component:integral},
+      ]
+    },
+    {
+      path:'/introduce',
+      component:introduce,
+      name:'园区介绍',
+      children:[
+    //   {path:'/main/integral', component:integral},
+      ]
+    },
+    {
+      path:'/policy',
+      component:policy,
+      name:'政策介绍',
+      children:[
+    //   {path:'/main/integral', component:integral},
+      ]
+    },
+    {
       path:'*',
       component:notfount,
       name:'notfount',
