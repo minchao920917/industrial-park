@@ -28,9 +28,10 @@ export default {
   }
 }
 </script>
-<style lang="less" scoped>
+<style >
 
 @import './less/reset.less';
+
 .app{
     position: relative;
     left: 0;
@@ -42,5 +43,7 @@ export default {
     -webkit-transition: all .3s ease;
       transition: all .3s ease;
   }
-
+.fade-enter, .fade-leave-to {
+  opacity:0;
+}
 </style>
