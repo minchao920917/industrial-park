@@ -10,10 +10,9 @@
     <!-- top start -->
     <div class="top">
       <van-image class="img" fit="none" src="../../static/img/main_bg.jpg" />
-      <div class="icon">
+      <!-- <div class="icon">
         <van-icon class="nav-icon" name="wap-nav" size=".48rem" color="#fff" />
-        <!-- <van-icon name="wap-nav" /> -->
-      </div>
+      </div> -->
     </div>
     <!-- top end -->
     <!-- 园区概况 start -->
