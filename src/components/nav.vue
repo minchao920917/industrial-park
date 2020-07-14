@@ -16,12 +16,7 @@
           </div>
         </div>
         <div class="right">
-          <van-sidebar class="nav-category" v-model="activeKey" @change="onChange">
-            <div v-for="(item,index) in categories" :key="index">
-              <van-sidebar-item  class="category" title="item.name" />
-            </div>
-            
-          </van-sidebar>
+          <sideRight :categories="categories"></sideRight>
         </div>
       </div>
     </van-popup>
@@ -39,14 +34,15 @@ Vue.use(Popup);
 Vue.use(Icon);
 import { Notify } from "vant";
 Vue.use(Notify);
-import category from "../mocks/navcation"
+import category from "../mocks/navcation";
+import sideRight from "../components/sideRight";
 export default {
   name: "top",
   data() {
     return {
       show: false,
       activeKey: 0,
-      categories:category.data[0]
+      categories:category.data[0].children
     };
   },
   methods: {
@@ -56,6 +52,9 @@ export default {
     onChange(index) {
       Notify({ type: "primary", message: index });
     }
+  },
+  components:{
+    sideRight
   }
 };
 </script>
