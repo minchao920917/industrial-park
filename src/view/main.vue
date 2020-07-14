@@ -10,9 +10,7 @@
     <!-- top start -->
     <div class="top">
       <van-image class="img" fit="none" src="../../static/img/main_bg.jpg" />
-      <!-- <div class="icon">
-        <van-icon class="nav-icon" name="wap-nav" size=".48rem" color="#fff" />
-      </div> -->
+    
     </div>
     <!-- top end -->
     <!-- 园区概况 start -->
@@ -304,18 +302,7 @@ export default {
         width: 100%;
       }
     }
-    .icon {
-      position: absolute;
-      width: 0.78rem;
-      height: 0.78rem;
-      background: rgba(44, 114, 206, 0.8);
-      top: 0.38rem;
-      right: 0.3rem;
-      text-align: center;
-      .nav-icon {
-        line-height: 0.78rem;
-      }
-    }
+
   }
   .situation {
     margin-top: 0.5rem;

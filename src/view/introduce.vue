@@ -12,10 +12,7 @@
         <h4>园区介绍</h4>
         <p>Introduction</p>
       </div>
-      <div class="icon">
-        <van-icon class="nav-icon" name="wap-nav" size=".48rem" color="#fff" />
-        <!-- <van-icon name="wap-nav" /> -->
-      </div>
+
     </div>
     <!-- top end -->
     <!-- 园区介绍 start -->
@@ -115,19 +112,7 @@ export default {
         width: 100%;
       }
     }
-    .icon {
-      position: absolute;
-      width: 0.78rem;
-      height: 0.78rem;
-      background: rgba(44, 114, 206, 0.8);
-      opacity: 1;
-      top: 0.38rem;
-      right: 0.3rem;
-      text-align: center;
-      .nav-icon {
-        line-height: 0.78rem;
-      }
-    }
+
   }
   //  园区介绍 start
   .introduce-content {
