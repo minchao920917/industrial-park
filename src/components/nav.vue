@@ -15,7 +15,14 @@
             <van-icon class="nav-icon" name="cross" size=".48rem" color="#fff" />
           </div>
         </div>
-        <div class="right"></div>
+        <div class="right">
+          <van-sidebar class="nav-category" v-model="activeKey" @change="onChange">
+            <div v-for="(item,index) in categories" :key="index">
+              <van-sidebar-item  class="category" title="item.name" />
+            </div>
+            
+          </van-sidebar>
+        </div>
       </div>
     </van-popup>
   </div>
@@ -24,18 +31,30 @@
 import Vue from "vue";
 import { Popup } from "vant";
 import { Icon } from "vant";
+import { Sidebar, SidebarItem } from "vant";
+
+Vue.use(Sidebar);
+Vue.use(SidebarItem);
 Vue.use(Popup);
 Vue.use(Icon);
+import { Notify } from "vant";
+Vue.use(Notify);
+import category from "../mocks/navcation"
 export default {
   name: "top",
   data() {
     return {
-      show: false
+      show: false,
+      activeKey: 0,
+      categories:category.data[0]
     };
   },
   methods: {
     showNav() {
       this.show = !this.show;
+    },
+    onChange(index) {
+      Notify({ type: "primary", message: index });
     }
   }
 };
@@ -71,7 +90,7 @@ export default {
           width: 0.78rem;
           height: 0.78rem;
           background: rgba(44, 114, 206, 0.8);
-        margin:.38rem .3rem;
+          margin: 0.38rem 0.3rem;
           text-align: center;
           .nav-icon {
             line-height: 0.78rem;
