@@ -148,6 +148,12 @@ export default {
     height: 100%;
     overflow-y: auto;
   }
+  /deep/ .van-cell::after{
+    display: none;
+  }
+  /deep/ .van-collapse-item--border::after{
+    display: none;
+  }
   /deep/ .van-sidebar-item--select::before {
     position: absolute;
     top: 50%;
@@ -166,7 +172,7 @@ export default {
     display: none;
   }
   /deep/ .van-cell {
-    padding: 0.1rem 0;
+    padding: 0;
   }
 }
 </style>

@@ -47,11 +47,11 @@
       </ul>
     </div>
     <div class="article-next">
-      <p v-if="!!article.previous">
+      <p v-if="!!article.previous.title">
         <span>上一篇：</span>
         <a href="javascript:void(0)" @click="toDetail(article.previous)">{{article.previous.title}}</a>
       </p>
-      <p v-if="!!article.next">
+      <p v-if="!!article.next.title">
         <span>下一篇：</span>
         <a href="javascript:void(0)" @click="toDetail(article.next)">{{article.next.title}}</a>
       </p>
@@ -67,6 +67,7 @@ Vue.use(VanImage);
 import { maßpState } from "vuex";
 import Url from "../utils/url";
 export default {
+
   data() {
     return {
       article: {
@@ -100,6 +101,15 @@ export default {
         ]
       }
     };
+  },
+  watch: {
+    $route: {
+          handler() {
+              this.getArticleByArticleId();
+              //深度监听，同时也可监听到param参数变化
+        },
+        deep: true,
+    }
   },
   created() {
     this.getArticleByArticleId();
