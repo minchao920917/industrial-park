@@ -69,9 +69,22 @@ import { Image as VanImage } from "vant";
 Vue.use(VanImage);
 
 import { maßpState } from "vuex";
+import Url from "../utils/url";
 export default {
   data() {
     return {};
+  },
+  created(){
+    this.getArticleByArticleId()
+  },
+  methods:{
+    getArticleByArticleId(){
+      this.reqGet(Url.getArticleByArticleId+"/"+this.$route.query.id,{
+      }).then(res=>{
+        console.log("res",res);
+        // this.categories = res.data[0].children
+      })
+    }
   }
 };
 </script>
