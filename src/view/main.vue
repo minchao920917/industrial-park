@@ -547,7 +547,7 @@ export default {
           background: #ffffff;
           align-content: center;
           margin: 0.2rem 0.2rem;
-          z-index: 11;
+          z-index: 2;
           div {
             height: 0.1rem;
           }
