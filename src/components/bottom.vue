@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    
+
     <ul class="grids">
       <li class="grids-item">
         <van-icon class="nav-icon" name="wap-home-o" size=".48rem" color="#fff" />
@@ -45,7 +45,7 @@ export default {
     justify-content: space-evenly;
     align-content: center;
     .grids-item{
-          align-self: center;
+      align-self: center;
       background: #2c72ce;
     }
   }

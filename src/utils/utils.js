@@ -38,5 +38,27 @@ export default{
           second.substring(second.length - 2, second.length)
         );
       }
+    },
+    /**
+     * @function 时间转化为字符串
+     * @param {时间} dataTime 
+     */
+    toDataFormatter(dataTime) {
+      if(dataTime===""){
+        return ""
+      }else{
+        var unixtimestamp = new Date(dataTime);
+        var year = 1900 + unixtimestamp.getYear();
+        var month = "0" + (unixtimestamp.getMonth() + 1);
+        var date = "0" + unixtimestamp.getDate();
+        return (
+          year +
+          "-" +
+          month.substring(month.length - 2, month.length) +
+          "-" +
+          date.substring(date.length - 2, date.length)
+         
+        );
+      }
     }
 }
