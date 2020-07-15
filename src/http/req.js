@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import axios from 'axios';
 import { Loading,Toast} from "vant";
+Vue.use(Toast);
 Vue.use(Loading);
 //请求头加上token信息
 axios.defaults.headers.common['Authorization'] = localStorage.getItem('token') || "";
@@ -92,7 +93,13 @@ export const reqGet = (url, parms) => {
   return axios.get(url, {
     params: config
   }).then((res) => {
-    return res.data;
+    if(res.status == "200"){
+      return res.data;
+    }else{
+      Toast.fail('请求失败');
+      return res.data;
+    }
+   
   }).catch((e) => {
     return e;
   })
