@@ -14,41 +14,19 @@
     <!-- top end -->
     <!-- 政策介绍 start -->
     <ul class="policy-content">
-      <li class="policy-li">
+       <li class="policy-li" v-for="(item,index) in records" :key="index" @click="toDetail(item)">
         <div class="left">
-          <van-image class="img" fit="none" src="../../static/img/policy/img1.jpg" />
+          <van-image v-if="!!item.thumbnail" class="img" 
+          
+           fit="none" :src="item.thumbnail" />
         </div>
-        <div class="right">
-          <h3>品牌战略提升樟树工业新高...</h3>
+        <div class="right" :class="{'no-img':item.thumbnail ==''}">
+          <h3>{{item.title}}</h3>
           <p class="desc">
             2010年5月中旬，“全国白酒标准
             化技术委员会特香型白酒...
           </p>
-          <p class="time">2020-06-10</p>
-        </div>
-      </li>
-      <li class="policy-li">
-        <div class="left" v-if="false"></div>
-        <div class="right no-img">
-          <h3>樟树：工商流动执法队，为药交会站好最后一班岗</h3>
-          <p class="desc">
-            在第四十一界全国药交会期间，樟树市工商局执法人员开展市
-            场督查活动，为药交会的成功举...
-          </p>
-          <p class="time">2020-06-10</p>
-        </div>
-      </li>
-      <li class="policy-li">
-        <div class="left">
-          <van-image class="img" fit="none" src="../../static/img/policy/img2.jpg" />
-        </div>
-        <div class="right">
-          <h3>品牌战略提升樟树工业新高...</h3>
-          <p class="desc">
-            2010年5月中旬，“全国白酒标准
-            化技术委员会特香型白酒...
-          </p>
-          <p class="time">2020-06-10</p>
+          <p class="time">{{item.updateTime}}</p>
         </div>
       </li>
     </ul>
@@ -66,10 +44,36 @@ Vue.use(Row);
 Vue.use(VanImage);
 
 Vue.use(Icon);
+import Url from "../utils/url";
 export default {
   data() {
-    return {};
+    return {
+      records:[]
+    };
+  },
+  created(){
+    this.getArticleList();
+  },
+  methods:{
+    //获取文章列表
+    getArticleList() {
+      this.reqGet(Url.getArticleList, {}).then(res => {
+        // this.images = res.data;
+        this.records = res.data.records;
+        // this.categories = res.data[0].children
+      });
+    },
+    toDetail(item){
+       this.$router.push({
+          path: "/detail",
+          query: {
+            id: item.id
+          }
+       })
+    }
   }
+  
+  
 };
 </script>
 <style lang="less" scoped>
@@ -119,7 +123,7 @@ export default {
           margin: 0.3rem 0 0.2rem;
         }
         .time {
-          width: 1.44rem;
+          width: 2.44rem;
           height: 0.31rem;
           font-size: 0.24rem;
           font-family: Microsoft YaHei;

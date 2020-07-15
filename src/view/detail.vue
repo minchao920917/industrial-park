@@ -18,7 +18,7 @@
         友好型、资源节约型”的科学发展要求。
       </p> -->
     </div>
-    <div class="article-attach">
+    <div class="article-attach" v-if="article.files.length > 0">
       <div class="left">附件：</div>
       <ul class="attach-list">
         <li v-for="(file,index) in article.files" :key="index">
@@ -47,13 +47,13 @@
       </ul>
     </div>
     <div class="article-next">
-      <p>
+      <p v-if="!!article.previous">
         <span>上一篇：</span>
-        <a href>樟树门户是最好的门户网站</a>
+        <a href="javascript:void(0)" @click="toDetail(article.previous)">{{article.previous.title}}</a>
       </p>
-      <p>
+      <p v-if="!!article.next">
         <span>下一篇：</span>
-        <a href>樟树门户是最好的门户网站</a>
+        <a href="javascript:void(0)" @click="toDetail(article.next)">{{article.next.title}}</a>
       </p>
     </div>
   </div>
@@ -77,8 +77,11 @@ export default {
         content:
           "这是文章内容......这是文章内容......这是文章内容......这是文章内容......",
         categoryId: "1283292657677889538",
-        previous: {},
-        next: {},
+        previous: {
+        },
+        next: {
+          
+        },
         files: [
           {
             attId: "732999560825413632",
@@ -113,6 +116,14 @@ export default {
         console.log("article",this.article);
         // this.categories = res.data[0].children
       });
+    },
+    toDetail(item){
+       this.$router.push({
+          path: "/detail",
+          query: {
+            id: item.id
+          }
+       })
     }
   }
 };
