@@ -9,8 +9,11 @@
   <div class="contanet">
     <!-- top start -->
     <div class="top">
-      <van-image class="img" fit="none" src="../../static/img/main_bg.jpg" />
-    
+      <van-swipe :autoplay="3000">
+        <van-swipe-item v-for="(image, index) in images" :key="index">
+          <img v-lazy="image.coverPhoto" @click="clickImg(image)" class="img" />
+        </van-swipe-item>
+      </van-swipe>
     </div>
     <!-- top end -->
     <!-- 园区概况 start -->
@@ -212,14 +215,14 @@
     <div class="situation contact">
       <div class="contact-content">
         <h3>联系我们</h3>
-        <p class="name">江西樟树工业园</p>
-        <p>电话：0795-7853281</p>
-        <p>地址：樟树市四特大道288正南方向105米</p>
-        <p>传真：0795-7853281</p>
-        <p>邮箱：zsgyy@163.com</p>
+        <p class="name">{{webSite.name}}</p>
+        <p>电话：{{webSite.telPhone}}</p>
+        <p>地址：{{webSite.address}}</p>
+        <p>传真：{{webSite.fax}}</p>
+        <p>邮箱：{{webSite.email}}</p>
       </div>
       <div class="address">
-        <van-image class="img" fit="cover" src="../../static/img/contact/address.jpg" />
+        <baidumap :latitude="webSite.latitude" :longitude="webSite.longitude"></baidumap>
       </div>
     </div>
     <!-- 联系我们 end -->
@@ -231,19 +234,30 @@ import Vue from "vue";
 import { Image as VanImage } from "vant";
 import { Icon } from "vant";
 import { Col, Row } from "vant";
+import { Swipe, SwipeItem } from "vant";
+import { Lazyload } from "vant";
 
+Vue.use(Lazyload);
+Vue.use(Swipe);
+Vue.use(SwipeItem);
 Vue.use(Col);
 Vue.use(Row);
 Vue.use(VanImage);
 
 Vue.use(Icon);
 
-import sectionTitle from "../components/sectionTitle"
+import sectionTitle from "../components/sectionTitle";
+import baidumap from "../components/baidumap";
 import { mapState } from "vuex";
+import Url from "../utils/url";
 export default {
   name: "index",
   data() {
     return {
+      images: [
+        "https://img.yzcdn.cn/vant/apple-1.jpg",
+        "https://img.yzcdn.cn/vant/apple-2.jpg"
+      ],
       playerOptions: {
         playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
         autoplay: false, //如果true,浏览器准备好时开始回放。
@@ -269,22 +283,69 @@ export default {
           remainingTimeDisplay: false,
           fullscreenToggle: true //全屏按钮
         }
+      },
+      webSite: {
+        name: "某某园区",
+        logo: "",
+        copyright: "",
+        telPhone: "18912341234",
+        fax: "123",
+        email: "123@qq.com",
+        address: "江西省南昌市",
+        latitude: "",
+        longitude: ""
       }
     };
   },
   props: [],
-  computed: mapState({
-    // wateritem: state => state.wateritem,
-    // fenglist : state => state.indexdata.styleTagList,
-    // stylelist : state => state.indexdata.scaneTagList,
-    // indeximg : state => state.indexdata.banner
-  }),
-  created() {},
+  computed: mapState({}),
+  created() {
+    this.getAdvertisings0();
+    this.getAdvertisings1();
+    this.getAdvertisings2();
+    this.getWebSite();
+  },
 
   mounted() {},
-  methods: {},
+  methods: {
+    clickImg(item) {
+      console.log(item);
+      location.href = item.link;
+    },
+    //获取首页的banner
+    getAdvertisings0() {
+      //首页特殊处理，根据位置依次为：0,1,2
+      this.reqGet(Url.getAdvertisings + "/index/0", {}).then(res => {
+        this.images = res.data;
+        // this.categories = res.data[0].children
+      });
+    },
+    //获取首页的banner
+    getAdvertisings1() {
+      //首页特殊处理，根据位置依次为：0,1,2
+      this.reqGet(Url.getAdvertisings + "/index/1", {}).then(res => {
+        console.log("1", res);
+        // this.categories = res.data[0].children
+      });
+    },
+    //获取首页的banner
+    getAdvertisings2() {
+      //首页特殊处理，根据位置依次为：0,1,2
+      this.reqGet(Url.getAdvertisings + "/index/2", {}).then(res => {
+        console.log(res);
+        // this.categories = res.data[0].children
+      });
+    },
+    //获取站点信息
+    getWebSite() {
+      this.reqGet(Url.getWebSite, {}).then(res => {
+        this.webSite = res.data;
+      });
+    }
+  },
   components: {
-    sectionTitle
+    sectionTitle,
+    baidumap
   }
 };
 </script>
@@ -298,11 +359,8 @@ export default {
     top: 0;
     width: 100%;
     .img {
-      img {
-        width: 100%;
-      }
+      width: 100%;
     }
-
   }
   .situation {
     margin-top: 0.5rem;

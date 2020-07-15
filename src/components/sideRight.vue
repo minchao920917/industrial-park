@@ -1,11 +1,15 @@
 <template>
   <div class="nav-category">
     <van-sidebar v-model="activeKey">
+        <van-sidebar-item
+            class="category"
+            :title="'首页'"
+            @click="toMain"
+        />
       <van-collapse v-model="activeNames" accordion>
         <div v-for="(item,index) in categories" :key="index">
           <van-collapse-item
             v-if="item.children && item.children.length>0"
-            @click="onChangeqq(item)"
             :name="item.name"
           >
         <template #title>
@@ -15,6 +19,7 @@
               class="category"
               v-for="(side,index) in item.children"
               :key="index"
+              @click="onChange(side)"
               :title="side.name"
             />
           </van-collapse-item>
@@ -23,6 +28,7 @@
             class="category"
             :key="index"
             :title="item.name"
+             @click="onChange(item)"
           />
         </div>
       </van-collapse>
@@ -60,20 +66,46 @@ export default {
     };
   },
   methods: {
-    onChangeqq(item) {
-      Notify({ type: "primary", message: item.name });
+    onChange(item) {
+        console.log("item",JSON.stringify(item));
+        if(item.categoryAttr == 0){//0 有子栏目 点击不会进
+        }
+        if(item.categoryAttr == 1){//1 单文章栏目 点击进文章详情
+            this.$router.push({
+                path:"/detail",
+                query:{
+                    id:item.id
+                }
+            });
+        }
+        if(item.categoryAttr == 2){//2 多文章栏目 点击进文章列表(招商政策页)
+            this.$router.push({
+                path:"/policy",
+                query:{
+                    id:item.id
+                }
+            });
+        }
+        if(item.categoryAttr == 3){//3 多视频栏目 点击进视频列表
+            this.$router.push({
+                path:"/videos",
+                query:{
+                    id:item.id
+                }
+            });
+        }
+        if(item.categoryAttr == 9){//9 其他
+            this.$router.push({
+                path:"/apply",
+                query:{
+                    id:item.id
+                }
+            });
+        }
+    //   Notify({ type: "primary", message: item.name });
     },
-    onChange(event) {
-      //折叠面板change事件
-      console.log("event", event);
-      console.log("activeNames", this.activeNames);
-      Notify({ type: "success", message: `展开: ${event.detail}` });
-    },
-    onOpen(event) {
-      Toast(`展开: ${event.detail}`);
-    },
-    onClose(event) {
-      Toast(`关闭: ${event.detail}`);
+    toMain(){
+        this.$router.push("main");
     }
   }
 };

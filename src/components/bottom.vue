@@ -33,9 +33,11 @@ export default {
 .footer {
   position: fixed;
   bottom: 0;
+  max-width: 7.5rem;
   width:100%;
   height: 0.97rem;
   background: #2c72ce;
+  z-index: 22;
   .grids{
     height: 0.97rem;
     background: #2c72ce;

@@ -34,18 +34,28 @@ Vue.use(Popup);
 Vue.use(Icon);
 import { Notify } from "vant";
 Vue.use(Notify);
-import category from "../mocks/navcation";
 import sideRight from "../components/sideRight";
+import Url from "../utils/url";
+
 export default {
   name: "top",
   data() {
     return {
       show: false,
       activeKey: 0,
-      categories:category.data[0].children
+      categories:[]
     };
   },
+  created(){
+    this.getCategoryTree();
+  },
   methods: {
+    getCategoryTree(){
+      this.reqGet(Url.getCategoryTree,{}).then(res=>{
+   
+        this.categories = res.data[0].children
+      })
+    },
     showNav() {
       this.show = !this.show;
     },

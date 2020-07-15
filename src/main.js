@@ -7,8 +7,13 @@ import 'vant/lib/index.css'
 import VideoPlayer from 'vue-video-player'
 require('video.js/dist/video-js.css')
 require('vue-video-player/src/custom-theme.css')
-Vue.use(VideoPlayer)
 
+import BaiduMap from 'vue-baidu-map'
+ 
+Vue.use(BaiduMap, {
+    ak: 'GpRqD2Sowifs********RRRRVl9'
+});
+Vue.use(VideoPlayer)
 import App from './App'
 import router from './router'
 import { createStore } from './store'
