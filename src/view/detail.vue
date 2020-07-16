@@ -1,9 +1,3 @@
-/*
- * @Author: minchao 
- * @Date: 2020-07-12 02:33:51 
- * @Last Modified by:   minchao 
- * @Desc 详情页面
- */
 <template>
   <div class="article">
     <div class="article-head">
