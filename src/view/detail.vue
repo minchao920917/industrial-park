@@ -96,7 +96,6 @@ export default {
   methods: {
     getArticleByArticleId() {
       var detailUrl = Url.getArticleByArticleId;
-      debugger
       if(this.categoryAttr ==1){
         detailUrl = Url.getArticleByCategoryId
       }
@@ -139,7 +138,7 @@ export default {
       color: rgba(51, 51, 51, 0.85);
     }
     .time {
-      margin: 0.2rem 0 0.3rem 0;
+      margin: 0.6rem 0 0.3rem 0;
       height: 0.31rem;
       font-size: 0.24rem;
       font-family: Microsoft YaHei;
