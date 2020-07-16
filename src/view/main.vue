@@ -28,7 +28,11 @@
         </div>
       </div>
       <div class="situation-content">
-        <p
+        <p v-for="(ad,index) in ad1" :key="index"
+        @click="clickAd(ad)">
+          {{ad.title}}
+        </p>
+        <!-- <p
           class="article-contet"
         >樟树市经济技术开发区由城北工业园、福城医药工业园、新基山盐化工业基地（二园一地）三部分组成。总体规划面积25.65平方公里，入园企业119家，其中投产企业102家，在建企业17家，2007年实现工业产值455970万元，销售收入480624万元，上交税金31857万元...</p>
         <van-image class="img" fit="none" src="../../static/img/situation_bg.jpg" />
@@ -62,7 +66,7 @@
             </p>
             <p class="cross-mean">工业产值</p>
           </van-col>
-        </van-row>
+        </van-row> -->
       </div>
     </div>
     <!-- 园区概况 end -->
@@ -79,30 +83,12 @@
       </div>
       <div class="situation-content">
         <ul class="articles">
-          <li class="article">
-            <van-image class="image" fit="none" src="../../static/img/article1.jpg" />
+          <li class="article" v-for="(ad,index) in ad2" :key="index" @click="clickAd(ad)">
+            <van-image class="image" fit="none" :src="ad.coverPhoto" />
             <div class="right">
-              <h3 class="title">品牌战略提升樟树工业新高...</h3>
-              <p class="desc">2010年5月中旬，“全国白酒标准 化技术委员会特香型白酒...</p>
-              <p class="time">2020-06-10</p>
-            </div>
-          </li>
-          <li class="article">
-            <van-image class="image" fit="none" src="../../static/img/article2.jpg" />
-
-            <div class="right">
-              <h3 class="title">樟树工业园区生态工业园建...</h3>
-              <p class="desc">2010年5月中旬，“全国白酒标准 化技术委员会特香型白酒...</p>
-              <p class="time">2020-06-10</p>
-            </div>
-          </li>
-          <li class="article">
-            <van-image class="image" fit="none" src="../../static/img/article3.jpg" />
-
-            <div class="right">
-              <h3 class="title">樟树盐化基地铁路专用线竣工</h3>
-              <p class="desc">2010年5月中旬，“全国白酒标准 化技术委员会特香型白酒...</p>
-              <p class="time">2020-06-10</p>
+              <h3 class="title">{{ad.title}}</h3>
+              <!-- <p class="desc">2010年5月中旬，“全国白酒标准 化技术委员会特香型白酒...</p>
+              <p class="time">2020-06-10</p> -->
             </div>
           </li>
         </ul>
@@ -284,6 +270,24 @@ export default {
           fullscreenToggle: true //全屏按钮
         }
       },
+      ad1: [
+        {
+          id: "2",
+          title: "首页中部1广告",
+          coverPhoto:
+            "https://rh.2hrh.com/resources/2020/07/14/90020200714145310980002000000999.jpg",
+          link: ""
+        }
+      ],
+      ad2: [
+        {
+          id: "1",
+          title: "首页中部2广告",
+          coverPhoto:
+            "https://rh.2hrh.com/resources/2020/07/14/90020200714145310980002000000999.jpg",
+          link: ""
+        }
+      ],
       webSite: {
         name: "某某园区",
         logo: "",
@@ -320,20 +324,17 @@ export default {
         // this.categories = res.data[0].children
       });
     },
-    //获取首页的banner
+    //获取首页的广告位1
     getAdvertisings1() {
-      //首页特殊处理，根据位置依次为：0,1,2
       this.reqGet(Url.getAdvertisings + "/index/1", {}).then(res => {
         console.log("1", res);
-        // this.categories = res.data[0].children
+        this.ad1 = res.data;
       });
     },
-    //获取首页的banner
+    //获取首页的广告位2
     getAdvertisings2() {
-      //首页特殊处理，根据位置依次为：0,1,2
       this.reqGet(Url.getAdvertisings + "/index/2", {}).then(res => {
-        console.log(res);
-        // this.categories = res.data[0].children
+        this.ad2 = res.data;
       });
     },
     //获取站点信息
@@ -341,6 +342,15 @@ export default {
       this.reqGet(Url.getWebSite, {}).then(res => {
         this.webSite = res.data;
       });
+    },
+    //点击广告位
+    clickAd(item){
+       this.$router.push({
+          path: "/detail",
+          query: {
+            id: item.id
+          }
+        });
     }
   },
   components: {
