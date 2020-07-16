@@ -18,7 +18,7 @@
         友好型、资源节约型”的科学发展要求。
       </p> -->
     </div>
-    <div class="article-attach" v-if="article.files.length > 0">
+    <div class="article-attach" v-if="!!article.files&&article.files.length > 0">
       <div class="left">附件：</div>
       <ul class="attach-list">
         <li v-for="(file,index) in article.files" :key="index">
@@ -28,22 +28,6 @@
             <van-image v-if="file.attType == 'pdf'" class="img" fit="cover" src="../../static/img/detail/pdf.png" />
              <p><a :href="file.link" target="_blank">{{file.attName}}</a></p>
         </li>
-        <!-- <li>
-          <van-image class="img" fit="cover" src="../../static/img/detail/word.png" />
-          <p>关于XXXXXXXXXXXXXXXXXXXXXXX....xlsx</p>
-        </li>
-        <li>
-          <van-image class="img" fit="cover" src="../../static/img/detail/office.png" />
-          <p>关于XXXXXXX的文档.doc</p>
-        </li>
-        <li>
-          <van-image class="img" fit="cover" src="../../static/img/detail/pptx.png" />
-          <p>关于XXXXXXX的文档.pptx</p>
-        </li>
-        <li>
-          <van-image class="img" fit="cover" src="../../static/img/detail/pdf.png" />
-          <p>关于XXXXXXX的文档.pdf</p>
-        </li> -->
       </ul>
     </div>
     <div class="article-next">
