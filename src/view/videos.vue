@@ -14,7 +14,7 @@
       <li class="video" v-for="(video,index) in videoList" :key="index">
         <div class="video-title">
           <h4>{{video.title}}</h4>
-          <p>{{video.createTime.slice(0,9)}}</p>
+          <p>{{video.createTime.slice(0,10)}}</p>
         </div>
         <video-player
           class="video-player vjs-custom-skin"

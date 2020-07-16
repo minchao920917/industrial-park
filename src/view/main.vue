@@ -17,8 +17,8 @@
     </div>
     <!-- top end -->
     <!-- 园区概况 start -->
-    <div enter-active-class="animated bounceInUp"  class="situation">
-      <div class="situation-title ">
+    <div enter-active-class="animated bounceInUp" class="situation">
+      <div class="situation-title">
         <div class="left">
           <span>园区概况</span>
         </div>
@@ -28,45 +28,17 @@
         </div>
       </div>
       <div class="situation-content">
-        <p v-for="(ad,index) in ad1" :key="index"
-        @click="clickAd(ad)">
-          {{ad.title}}
-        </p>
-        <!-- <p
-          class="article-contet"
-        >樟树市经济技术开发区由城北工业园、福城医药工业园、新基山盐化工业基地（二园一地）三部分组成。总体规划面积25.65平方公里，入园企业119家，其中投产企业102家，在建企业17家，2007年实现工业产值455970万元，销售收入480624万元，上交税金31857万元...</p>
-        <van-image class="img" fit="none" src="../../static/img/situation_bg.jpg" />
-
-        <van-row class="cross">
-          <van-col class="cross-box cross-first" span="12">
-            <p class="cross-title">
-              2001
-              <span>年</span>
-            </p>
-            <p class="cross-mean">成立时间</p>
-          </van-col>
-          <van-col class="cross-box cross-two" span="12">
-            <p class="cross-title">
-              25.65
-              <span>平方公里</span>
-            </p>
-            <p class="cross-mean">面积</p>
-          </van-col>
-          <van-col class="cross-box cross-three" span="12">
-            <p class="cross-title">
-              230
-              <span>家</span>
-            </p>
-            <p class="cross-mean">企业数量</p>
-          </van-col>
-          <van-col class="cross-box cross-four" span="12">
-            <p class="cross-title">
-              107.6
-              <span>亿元</span>
-            </p>
-            <p class="cross-mean">工业产值</p>
-          </van-col>
-        </van-row> -->
+        <p>{{content}}</p>
+        <ul class="articles">
+          <li class="article" v-for="(ad,index) in ad2" :key="index" @click="clickAd(ad)">
+            <van-image class="image" :src="ad.coverPhoto" />
+          </li>
+        </ul>
+        <ul class="articles">
+          <li class="article" v-for="(ad,index) in ad1" :key="index" @click="clickAd(ad)">
+            <van-image class="image" :src="ad.coverPhoto" />
+          </li>
+        </ul>
       </div>
     </div>
     <!-- 园区概况 end -->
@@ -83,12 +55,12 @@
       </div>
       <div class="situation-content">
         <ul class="articles">
-          <li class="article" v-for="(ad,index) in ad2" :key="index" @click="clickAd(ad)">
-            <van-image class="image" fit="none" :src="ad.coverPhoto" />
+          <li class="article" v-for="(item,index) in records" :key="index" @click="clickAd(ad)">
+            <van-image v-if="item.thumbnail" class="image" :src="item.thumbnail" />
             <div class="right">
-              <h3 class="title">{{ad.title}}</h3>
-              <!-- <p class="desc">2010年5月中旬，“全国白酒标准 化技术委员会特香型白酒...</p>
-              <p class="time">2020-06-10</p> -->
+              <h3 class="title">{{item.title}}</h3>
+              <p class="desc">{{item.content}}</p>
+              <p class="time">{{item.createTime.slice(0,10)}}</p>
             </div>
           </li>
         </ul>
@@ -107,33 +79,28 @@
         </div>
       </div>
       <div class="attract-content">
-        <ul class="attracts">
+        <ul class="attracts animated bounceInUp">
           <li class="attract attract-red" @click="goPark('1283292657224904706')">
-            <div></div>
-            <van-icon class="attract-icon" name="like-o" size=".66rem" />
-            <p>入园流程</p>
+            <img src="../../static/kongbai.png" alt />
+            <p></p>
           </li>
           <li class="attract attract-blue" @click="goPark('1283292657224904707')">
-            <div></div>
-            <van-icon class="attract-icon" name="like-o" size=".66rem" />
+            <img src="../../static/ruyuan.png" alt />
+            <p>入园流程</p>
+          </li>
+          <li class="attract attract-yellow" @click="goPark('1283292657350733825')">
+            <img src="../../static/zhaoshang.png" alt />
             <p>招商政策</p>
           </li>
-          <li class="attract attract-yellow" @click="goPark('1283292657350733825')" >
-            <div></div>
-            <van-icon class="attract-icon" name="setting-o" size=".66rem" />
+        </ul>
+        <ul class="attracts animated bounceInUp">
+          <li class="attract attract-green" @click="goPark('1283292657392676865')">
+            <img src="../../static/dongtai.png" alt />
             <p>招商动态</p>
           </li>
-        </ul>
-        <ul class="attracts">
-          <li class="attract attract-green"  @click="goPark('1283292657392676865')">
-            <div></div>
-            <van-icon class="attract-icon" name="cart-o" size=".66rem" />
+          <li class="attract attract-purple" @click="goPark('1283292657128435713')">
+            <img src="../../static/xiangmu.png" alt />
             <p>重点项目</p>
-          </li>
-          <li class="attract attract-purple"  @click="goPark('1283292657128435713')">
-            <div></div>
-            <van-icon class="attract-icon" name="friends-o" size=".66rem" />
-            <p>预约参观</p>
           </li>
         </ul>
       </div>
@@ -151,20 +118,18 @@
         </div>
       </div>
       <div class="videos-content">
-        <video-player
-          class="video-player vjs-custom-skin"
-          ref="videoPlayer"
-          :playsinline="true"
-          :options="playerOptions"
-        ></video-player>
         <ul class="videos-list">
-          <li class="video">
-            <h4 class="title">高端化、规模化、科技化的产业园</h4>
-            <p>2020-06-10</p>
-          </li>
-          <li class="video">
-            <h4 class="title">高端化、规模化、科技化的产业园</h4>
-            <p>2020-06-10</p>
+          <li class="video" v-for="(video,index) in videoList" :key="index">
+            <video-player
+              class="video-player vjs-custom-skin"
+              ref="videoPlayer"
+              :playsinline="true"
+              :options="video.playerOptions"
+            ></video-player>
+            <div class="video-title">
+              <h4>{{video.title}}</h4>
+              <p>{{video.createTime.slice(0,10)}}</p>
+            </div>
           </li>
         </ul>
       </div>
@@ -183,12 +148,12 @@
       </div>
       <div class="service-content">
         <ul class="services-list">
-          <li class="service service-left" @click="go('1283292657631752193')">
+          <li class="service service-left" @click="goP('1283292657631752193')">
             <div class="restrain">
               <span>企业服务</span>
             </div>
           </li>
-          <li class="service service-right" @click="go('1283292657677889538')">
+          <li class="service service-right" @click="goP('1283292657677889538')">
             <div class="restrain">
               <span>政务服务</span>
             </div>
@@ -208,7 +173,7 @@
         <p>邮箱：{{webSite.email}}</p>
       </div>
       <div class="address">
-        <baidumap :map="map" ></baidumap>
+        <baidumap :map="map"></baidumap>
       </div>
     </div>
     <!-- 联系我们 end -->
@@ -270,8 +235,11 @@ export default {
           fullscreenToggle: true //全屏按钮
         }
       },
+      content: "",
       ad1: [],
       ad2: [],
+      records: [],
+      videoList: [],
       webSite: {
         name: "某某园区",
         logo: "",
@@ -283,13 +251,12 @@ export default {
         latitude: "",
         longitude: ""
       },
-      map:{
+      map: {
         center: { lng: "28.058492", lat: "115.566227" },
         zoom: 15,
         show: true,
         dragging: true
       }
-      
     };
   },
   props: [],
@@ -299,16 +266,79 @@ export default {
     this.getAdvertisings1();
     this.getAdvertisings2();
     this.getWebSite();
+    this.getArticleByCategoryId();
+    this.getArticleList();
+    this.getArticleVideo();
   },
 
   mounted() {},
   methods: {
-    go(){
-
+    getArticleList() {
+      this.reqGet(Url.getArticleList, {
+        categoryId: "1283292656721588227",
+        limit: 3,
+        page: 1
+      }).then(res => {
+        this.records = res.data.records;
+      });
     },
-    goPark(id){
+    getArticleVideo() {
+      this.reqGet(Url.getArticleList, {
+        categoryId: "1283292657539477505",
+        limit: 3,
+        page: 1
+      }).then(res => {
+        console.log("article", res);
+
+        res.data.records.map((item, index) => {
+          let playerOptions = {
+            playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
+            autoplay: false, //如果true,浏览器准备好时开始回放。
+            muted: false, // 默认情况下将会消除任何音频。
+            loop: false, // 导致视频一结束就重新开始。
+            preload: "auto", // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
+            language: "zh-CN",
+            //aspectRatio: "16:9", // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+            fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
+            sources: [
+              {
+                type: "video/mp4", //这里的种类支持很多种：基本视频格式、直播、流媒体等，具体可以参看git网址项目
+                src: item.files //url地址
+              }
+            ],
+            poster: item.thumbnail, //你的封面地址
+            // width: document.documentElement.clientWidth, //播放器宽度
+            notSupportedMessage: "此视频暂无法播放，请稍后再试", //允许覆盖Video.js无法播放媒体源时显示的默认信息。
+            controlBar: {
+              timeDivider: true,
+              durationDisplay: true,
+              remainingTimeDisplay: false,
+              fullscreenToggle: true //全屏按钮
+            }
+          };
+          item.playerOptions = playerOptions;
+
+          this.videoList.push(item);
+        });
+        console.log(this.videoList);
+        // this.categories = res.data[0].children
+      });
+    },
+    getArticleByCategoryId() {
+      this.reqGet(
+        Url.getArticleByCategoryId + "/" + "1283292656562204674",
+        {}
+      ).then(res => {
+        this.content = res.data.content;
+      });
+    },
+    goP(id) {
       console.log(id)
-      this.$router.push({path:'/policy',params:id})
+      this.$router.push({ path: "/policy", query: id });
+    },
+    goPark(id) {
+      console.log(id);
+      this.$router.push({ path: "/policy", params: id });
     },
     clickImg(item) {
       console.log(item);
@@ -344,26 +374,26 @@ export default {
           zoom: 15,
           show: true,
           dragging: true
+        };
+      });
+    },
+    //点击广告位
+    clickAd(item) {
+      this.$router.push({
+        path: "/detail",
+        query: {
+          id: item.id
         }
       });
     },
     //点击广告位
-    clickAd(item){
-       this.$router.push({
-          path: "/detail",
-          query: {
-            id: item.id
-          }
-        });
-    },
-    //点击广告位
-    toPolicy(id){
-       this.$router.push({
-          path: "/policy",
-          query: {
-            id: id
-          }
-        });
+    toPolicy(id) {
+      this.$router.push({
+        path: "/policy",
+        query: {
+          id: id
+        }
+      });
     }
   },
   components: {
@@ -435,6 +465,10 @@ export default {
     }
     .situation-content {
       padding: 0.3rem;
+      p {
+        line-height: 0.7rem;
+        color: #666666;
+      }
       .article-contet {
         width: 6.9rem;
         height: 2.4rem;
@@ -522,13 +556,12 @@ export default {
             }
             .desc {
               width: 3.78rem;
-              height: 0.67rem;
               font-size: 0.24rem;
               font-family: Microsoft YaHei;
               font-weight: 400;
               line-height: 0.36rem;
               color: rgba(102, 102, 102, 1);
-              margin: 0.3rem 0 0.2rem 0;
+              margin: 0.32rem 0 0.21rem 0;
               // letter-spacing:50px;
               // opacity:1;
             }
@@ -571,6 +604,11 @@ export default {
           align-content: center;
           margin: 0.2rem 0.2rem;
           z-index: 2;
+          img {
+            width: 2rem;
+            height: 2rem;
+            display: block;
+          }
           div {
             height: 0.1rem;
           }
@@ -578,52 +616,14 @@ export default {
             margin-top: 0.5rem;
           }
           p {
+            position: relative;
+            bottom:0.7rem;
             font-size: 0.26rem;
             font-family: Microsoft YaHei;
             font-weight: 400;
             line-height: 0.35rem;
             color: rgba(51, 51, 51, 1);
             margin-top: 0.2rem;
-          }
-        }
-        .attract-red {
-          div {
-            background: #ff5e9e;
-          }
-          .attract-icon {
-            color: #ff5e9e;
-          }
-        }
-        .attract-blue {
-          div {
-            background: #23a0ff;
-          }
-          .attract-icon {
-            color: #23a0ff;
-          }
-        }
-        .attract-yellow {
-          div {
-            background: #ffa200;
-          }
-          .attract-icon {
-            color: #ffa200;
-          }
-        }
-        .attract-green {
-          div {
-            background: #10be4a;
-          }
-          .attract-icon {
-            color: #10be4a;
-          }
-        }
-        .attract-purple {
-          div {
-            background: #a484ff;
-          }
-          .attract-icon {
-            color: #a484ff;
           }
         }
       }
@@ -642,10 +642,35 @@ export default {
   }
   //招商合作 end
   // 园区视频 start
-  .videos {
-    .videos-content {
-      padding: 0.58rem 0.3rem 0 0.3rem;
+  .videos-list {
+    padding: 0.3rem;
+    .video {
+      .video-title {
+        border-bottom: 0.01rem solid #e3e3e3;
+        margin-top: 0.2rem;
+        h4 {
+          width: 4.4rem;
+          height: 0.37rem;
+          font-size: 0.28rem;
+          font-family: Microsoft YaHei;
+          font-weight: 400;
+          line-height: 0.37rem;
+          color: rgba(51, 51, 51, 1);
+        }
+        p {
+          width: 1.44rem;
+          height: 0.31rem;
+          font-size: 0.24rem;
+          font-family: Microsoft YaHei;
+          font-weight: 400;
+          line-height: 0.31rem;
+          padding: 0.2rem 0 0.3rem 0;
+          color: rgba(173, 173, 173, 1);
+        }
+      }
+
       .video-player {
+        margin-top: 0.2rem;
         .vjs-icon-placeholder {
           width: 100%;
           height: 100%;
@@ -660,31 +685,6 @@ export default {
             // height: 2em !important;
             width: 2em;
             border-radius: 4em;
-          }
-        }
-      }
-      .videos-list {
-        .video {
-          padding: 0.45rem 0;
-          .title {
-            width: 4.4rem;
-            height: 0.37rem;
-            font-size: 0.28rem;
-            font-family: Microsoft YaHei;
-            font-weight: 400;
-            color: rgba(51, 51, 51, 1);
-          }
-          p {
-            height: 0.31rem;
-            font-size: 0.24rem;
-            font-family: Microsoft YaHei;
-            font-weight: 400;
-            line-height: 0.31rem;
-            color: rgba(173, 173, 173, 1);
-          }
-          border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-          &:last-child {
-            border-bottom: none;
           }
         }
       }
