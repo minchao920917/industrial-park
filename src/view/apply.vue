@@ -29,7 +29,7 @@
         />
         <div style="margin: .43em 0;">
           <van-button
-            class="form-btn"
+            class="form-btn animated bounceInUp"
             type="primary"
             color="#2C72CE"
             native-type="submit"

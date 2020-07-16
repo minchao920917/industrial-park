@@ -17,8 +17,8 @@
     </div>
     <!-- top end -->
     <!-- 园区概况 start -->
-    <div class="situation">
-      <div class="situation-title">
+    <div enter-active-class="animated bounceInUp"  class="situation">
+      <div class="situation-title ">
         <div class="left">
           <span>园区概况</span>
         </div>
@@ -208,7 +208,7 @@
         <p>邮箱：{{webSite.email}}</p>
       </div>
       <div class="address">
-        <baidumap :latitude="webSite.latitude" :longitude="webSite.longitude"></baidumap>
+        <baidumap :map="map" ></baidumap>
       </div>
     </div>
     <!-- 联系我们 end -->
@@ -282,7 +282,14 @@ export default {
         address: "江西省南昌市",
         latitude: "",
         longitude: ""
+      },
+      map:{
+        center: { lng: "28.058492", lat: "115.566227" },
+        zoom: 15,
+        show: true,
+        dragging: true
       }
+      
     };
   },
   props: [],
@@ -325,6 +332,12 @@ export default {
     getWebSite() {
       this.reqGet(Url.getWebSite, {}).then(res => {
         this.webSite = res.data;
+        this.map = {
+          center: { lng: this.webSite.longitude, lat: this.webSite.latitude },
+          zoom: 15,
+          show: true,
+          dragging: true
+        }
       });
     },
     //点击广告位

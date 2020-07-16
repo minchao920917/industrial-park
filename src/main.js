@@ -11,8 +11,9 @@ require('vue-video-player/src/custom-theme.css')
 import BaiduMap from 'vue-baidu-map'
  
 Vue.use(BaiduMap, {
-    ak: 'GpRqD2Sowifs********RRRRVl9'
+    ak: '5veFX2R6D5oCgNjbBL4d86tKu1mTUBuK'
 });
+
 Vue.use(VideoPlayer)
 import App from './App'
 import router from './router'

@@ -7,31 +7,41 @@
     <!--点-->
     <bm-marker :position="map.center" :dragging="map.dragging" animation="BMAP_ANIMATION_DROP">
       <!--提示信息-->
-      <bm-info-window :show="map.show">江西樟树工业园~</bm-info-window>
+      <bm-info-window class="map-tips" :show="map.show">江西樟树工业园</bm-info-window>
     </bm-marker>
   </baidu-map>
 </template>
 <script>
 export default {
   name: "baidumap",
-  props:{
-      latitude:{
-          type:String,
-          default:"31.32362"
-      },
-        longitude:{
-          type:String,
-          default:"121.447254"
-      }
-  },
-  data: () => ({
+  props: {
     map: {
-      center: { lng: this.longitude, lat: this.latitude },
-      zoom: 15,
-      show: true,
-      dragging: true
-    }
-  }),
+      type: Object,
+      default: {}
+    },
+
+  },
+  whatch:{
+    // longitude(val){
+    //   this.map = {
+    //       center: { lng: val, lat: this.latitude },
+    //     zoom: 15,
+    //     show: true,
+    //     dragging: true
+    //   }
+    // }
+  },
+  data() {
+    return {
+      // map: {
+      //   center: { lng: this.longitude, lat: this.latitude },
+      //   zoom: 15,
+      //   show: true,
+      //   dragging: true
+      // }
+    };
+  },
+
   methods: {
     handler({ BMap, map }) {
       let me = this;
@@ -51,5 +61,8 @@ export default {
 .map {
   width: 100%;
   height: 4rem;
+  /deep/ .map-tips{
+    margin-top:16px;
+  }
 }
 </style>
