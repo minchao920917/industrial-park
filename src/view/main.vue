@@ -102,7 +102,7 @@
           <span>招商合作</span>
         </div>
         <div class="right">
-          <span v-if="false">查看更多</span>
+          <span v-if="false" @click="toPolicy('1283292656721588227')">查看更多</span>
           <van-icon v-if="false" name="arrow" />
         </div>
       </div>
@@ -146,7 +146,7 @@
           <span>园区视频</span>
         </div>
         <div class="right">
-          <span>查看更多</span>
+          <span @click="toPolicy('1283292656721588227')">查看更多</span>
           <van-icon name="arrow" />
         </div>
       </div>
@@ -270,24 +270,8 @@ export default {
           fullscreenToggle: true //全屏按钮
         }
       },
-      ad1: [
-        {
-          id: "2",
-          title: "首页中部1广告",
-          coverPhoto:
-            "https://rh.2hrh.com/resources/2020/07/14/90020200714145310980002000000999.jpg",
-          link: ""
-        }
-      ],
-      ad2: [
-        {
-          id: "1",
-          title: "首页中部2广告",
-          coverPhoto:
-            "https://rh.2hrh.com/resources/2020/07/14/90020200714145310980002000000999.jpg",
-          link: ""
-        }
-      ],
+      ad1: [],
+      ad2: [],
       webSite: {
         name: "某某园区",
         logo: "",
@@ -349,6 +333,15 @@ export default {
           path: "/detail",
           query: {
             id: item.id
+          }
+        });
+    },
+    //点击广告位
+    toPolicy(id){
+       this.$router.push({
+          path: "/policy",
+          query: {
+            id: id
           }
         });
     }
