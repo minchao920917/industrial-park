@@ -76,8 +76,9 @@ export default {
             link: "http://rh.2hrh.com/Attachment/file/732999906947768320",
             thumbnailId: ""
           }
-        ]
-      }
+        ],
+      },
+      categoryAttr:this.$route.query.categoryAttr
     };
   },
   watch: {
@@ -94,8 +95,13 @@ export default {
   },
   methods: {
     getArticleByArticleId() {
+      var detailUrl = Url.getArticleByArticleId;
+      debugger
+      if(this.categoryAttr ==1){
+        detailUrl = Url.getArticleByCategoryId
+      }
       this.reqGet(
-        Url.getArticleByArticleId+"/"+this.$route.query.id,
+        detailUrl+"/"+this.$route.query.id,
         {
           articleId:this.$route.query.id
         }
@@ -105,6 +111,7 @@ export default {
         // this.categories = res.data[0].children
       });
     },
+    
     toDetail(item){
        this.$router.push({
           path: "/detail",

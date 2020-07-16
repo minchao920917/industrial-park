@@ -72,7 +72,8 @@ export default {
         this.$router.push({
           path: "/detail",
           query: {
-            id: item.id
+            id: item.id,
+            categoryAttr :item.categoryAttr 
           }
         });
       }
