@@ -24,7 +24,7 @@ export default {
     //获取详情
     getArticleByArticleId:DomainName+"/article/getByArticleId",
     //申请参观
-    postAppointmen:DomainName+"/article/appointmen",
+    postAppointmen:DomainName+"/appointment",
 
     
 

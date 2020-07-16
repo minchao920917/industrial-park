@@ -1,8 +1,12 @@
 <template>
   <div class="videos">
     <!-- top start -->
-    <div class="top">
-      <van-image class="img" fit="none" src="../../static/img/videos/banner_bg.jpg" />
+    <div class="top" v-if="this.images">
+      <van-swipe :autoplay="3000">
+        <van-swipe-item v-for="(image, index) in images" :key="index">
+          <img v-lazy="image.coverPhoto" @click="clickImg(image)" class="img" />
+        </van-swipe-item>
+      </van-swipe>
     </div>
     <!-- top end -->
     <!-- 视频列表 start -->
@@ -10,7 +14,7 @@
       <li class="video" v-for="(video,index) in videoList" :key="index">
         <div class="video-title">
           <h4>{{video.title}}</h4>
-          <p>{{video.createTime}}</p>
+          <p>{{video.createTime.slice(0,9)}}</p>
         </div>
         <video-player
           class="video-player vjs-custom-skin"
@@ -28,16 +32,19 @@ import Vue from "vue";
 import { Image as VanImage } from "vant";
 import { Icon } from "vant";
 import { Col, Row } from "vant";
+import { Swipe, SwipeItem } from "vant";
 
 Vue.use(Col);
 Vue.use(Row);
 Vue.use(VanImage);
+Vue.use(SwipeItem);
 
 Vue.use(Icon);
 import Url from "../utils/url";
 export default {
   data() {
     return {
+      id:this.$route.query.id,
       videoList: [],
       playerOptions: {
         playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
@@ -69,8 +76,16 @@ export default {
   },
   created() {
     this.getVideosList();
+    this.getAdvertisings0();
   },
   methods: {
+    getAdvertisings0() {
+      //首页特殊处理，根据位置依次为：0,1,2
+      this.reqGet(Url.getAdvertisings + "/"+this.id+"/1", {}).then(res => {
+        this.images = res.data;
+        // this.categories = res.data[0].children
+      });
+    },
     getVideosList() {
       this.reqGet(
         Url.getArticleList + "?categoryId=" + this.$route.query.id,
@@ -105,10 +120,10 @@ export default {
             }
           };
           item.playerOptions = playerOptions;
+          
           this.videoList.push(item);
         });
-        console.log(this.videoList);
-
+        console.log(this.videoList)
         // this.categories = res.data[0].children
       });
     }

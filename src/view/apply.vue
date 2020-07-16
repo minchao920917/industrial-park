@@ -146,7 +146,7 @@ export default {
         }).then(res => {
           console.log(res);
           loadingToast.clear();
-          if (res.status === "0") {
+          if (res.code == "0") {
             Notify({ type: "success", message: "申请成功" });
           } else {
             Toast({

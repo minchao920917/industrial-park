@@ -76,8 +76,9 @@ export default {
             link: "http://rh.2hrh.com/Attachment/file/732999906947768320",
             thumbnailId: ""
           }
-        ]
-      }
+        ],
+      },
+      categoryAttr:this.$route.query.categoryAttr
     };
   },
   watch: {
@@ -94,8 +95,12 @@ export default {
   },
   methods: {
     getArticleByArticleId() {
+      var detailUrl = Url.getArticleByArticleId;
+      if(this.categoryAttr ==1){
+        detailUrl = Url.getArticleByCategoryId
+      }
       this.reqGet(
-        Url.getArticleByArticleId+"/"+this.$route.query.id,
+        detailUrl+"/"+this.$route.query.id,
         {
           articleId:this.$route.query.id
         }
@@ -105,6 +110,7 @@ export default {
         // this.categories = res.data[0].children
       });
     },
+    
     toDetail(item){
        this.$router.push({
           path: "/detail",
@@ -132,7 +138,7 @@ export default {
       color: rgba(51, 51, 51, 0.85);
     }
     .time {
-      margin: 0.2rem 0 0.3rem 0;
+      margin: 0.6rem 0 0.3rem 0;
       height: 0.31rem;
       font-size: 0.24rem;
       font-family: Microsoft YaHei;

@@ -108,32 +108,32 @@
       </div>
       <div class="attract-content">
         <ul class="attracts">
-          <li class="attract attract-red">
-            <div></div>
-            <van-icon class="attract-icon" name="like-o" size=".66rem" />
-            <p></p>
-          </li>
-          <li class="attract attract-blue">
+          <li class="attract attract-red" @click="goPark('1283292657224904706')">
             <div></div>
             <van-icon class="attract-icon" name="like-o" size=".66rem" />
             <p>入园流程</p>
           </li>
-          <li class="attract attract-yellow">
+          <li class="attract attract-blue" @click="goPark('1283292657224904707')">
+            <div></div>
+            <van-icon class="attract-icon" name="like-o" size=".66rem" />
+            <p>招商政策</p>
+          </li>
+          <li class="attract attract-yellow" @click="goPark('1283292657350733825')" >
             <div></div>
             <van-icon class="attract-icon" name="setting-o" size=".66rem" />
-            <p>招商政策</p>
+            <p>招商动态</p>
           </li>
         </ul>
         <ul class="attracts">
-          <li class="attract attract-green">
+          <li class="attract attract-green"  @click="goPark('1283292657392676865')">
             <div></div>
             <van-icon class="attract-icon" name="cart-o" size=".66rem" />
-            <p>招商动态</p>
+            <p>重点项目</p>
           </li>
-          <li class="attract attract-purple">
+          <li class="attract attract-purple"  @click="goPark('1283292657128435713')">
             <div></div>
             <van-icon class="attract-icon" name="friends-o" size=".66rem" />
-            <p>重点项目</p>
+            <p>预约参观</p>
           </li>
         </ul>
       </div>
@@ -183,12 +183,12 @@
       </div>
       <div class="service-content">
         <ul class="services-list">
-          <li class="service service-left">
+          <li class="service service-left" @click="go('1283292657631752193')">
             <div class="restrain">
               <span>企业服务</span>
             </div>
           </li>
-          <li class="service service-right">
+          <li class="service service-right" @click="go('1283292657677889538')">
             <div class="restrain">
               <span>政务服务</span>
             </div>
@@ -303,6 +303,13 @@ export default {
 
   mounted() {},
   methods: {
+    go(){
+
+    },
+    goPark(id){
+      console.log(id)
+      this.$router.push({path:'/policy',params:id})
+    },
     clickImg(item) {
       console.log(item);
       location.href = item.link;
