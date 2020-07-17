@@ -49,34 +49,6 @@ export default {
   data() {
     return {
       article: {
-        createTime: "2020-07-09 22:18:20",
-        updateTime: "2020-07-09 22:18:20",
-        id: "1281231214472069121",
-        title: "附件测试文章...",
-        content:
-          "这是文章内容......这是文章内容......这是文章内容......这是文章内容......",
-        categoryId: "1283292657677889538",
-        previous: {
-        },
-        next: {
-          
-        },
-        files: [
-          {
-            attId: "732999560825413632",
-            attName: "QQ截图20200611132658.png",
-            attType: "png",
-            link: "http://rh.2hrh.com/Attachment/file/732999560825413632",
-            thumbnailId: ""
-          },
-          {
-            attId: "732999906947768320",
-            attName: "Word.docx",
-            attType: "docx",
-            link: "http://rh.2hrh.com/Attachment/file/732999906947768320",
-            thumbnailId: ""
-          }
-        ],
       },
       categoryAttr:this.$route.query.categoryAttr
     };
@@ -102,7 +74,6 @@ export default {
       this.reqGet(
         detailUrl+"/"+this.$route.query.id,
         {
-          articleId:this.$route.query.id
         }
       ).then(res => {
         this.article = res.data;

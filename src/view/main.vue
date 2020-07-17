@@ -23,7 +23,7 @@
           <span>园区概况</span>
         </div>
         <div class="right">
-          <span>查看更多</span>
+          <span @click="goPark('1283292655937253377 ')">查看更多</span>
           <van-icon name="arrow" />
         </div>
       </div>
@@ -49,14 +49,20 @@
           <span>园区动态</span>
         </div>
         <div class="right">
-          <span>查看更多</span>
+          <span @click="goPark('1283292656721588227')">查看更多</span>
           <van-icon name="arrow" />
         </div>
       </div>
       <div class="situation-content">
         <ul class="articles">
-          <li class="article" v-for="(item,index) in records" :key="index" @click="clickAd(ad)">
-            <van-image v-if="item.thumbnail" class="image" :src="item.thumbnail" />
+          <li class="article" v-for="(item,index) in records" :key="index" @click="clickAd(item)">
+            <van-image
+              style="width: 3rem;
+              height: 3rem;"
+              v-if="item.thumbnail"
+              class="image"
+              :src="item.thumbnail"
+            />
             <div class="right">
               <h3 class="title">{{item.title}}</h3>
               <p class="desc">{{item.content}}</p>
@@ -82,7 +88,7 @@
         <ul class="attracts animated bounceInUp">
           <li class="attract attract-red" @click="goPark('1283292657224904706')">
             <img src="../../static/kongbai.png" alt />
-            <p></p>
+            <p>预约管理</p>
           </li>
           <li class="attract attract-blue" @click="goPark('1283292657224904707')">
             <img src="../../static/ruyuan.png" alt />
@@ -113,7 +119,7 @@
           <span>园区视频</span>
         </div>
         <div class="right">
-          <span @click="toPolicy('1283292656721588227')">查看更多</span>
+          <span @click="toPolicy('1283292657539477505')">查看更多</span>
           <van-icon name="arrow" />
         </div>
       </div>
@@ -333,16 +339,18 @@ export default {
       });
     },
     goP(id) {
-      console.log(id)
-      this.$router.push({ path: "/policy", query: id });
+      console.log(id);
+      this.$router.push({ path: "/policy", query: { id: id } });
     },
     goPark(id) {
       console.log(id);
-      this.$router.push({ path: "/policy", params: id });
+      this.$router.push({ path: "/policy", query: { id: id } });
     },
     clickImg(item) {
       console.log(item);
-      location.href = item.link;
+      if (item.link != "") {
+        location.href = item.link;
+      }
     },
     //获取首页的banner
     getAdvertisings0() {
@@ -389,7 +397,7 @@ export default {
     //点击广告位
     toPolicy(id) {
       this.$router.push({
-        path: "/policy",
+        path: "/videos",
         query: {
           id: id
         }
@@ -537,14 +545,20 @@ export default {
         .article {
           margin-top: 0.5rem;
           display: flex;
-          justify-content: space-between;
+          align-items: center;
           .left {
-            .img {
+            .image {
+              width: 1.5rem;
+              height: 1.5rem;
             }
           }
           .right {
+            height: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            margin-left: 0.1rem;
             .title {
-              width: 3.76rem;
               height: 0.37rem;
               font-size: 0.28rem;
               font-family: Microsoft YaHei;
@@ -555,8 +569,8 @@ export default {
               // opacity:1;
             }
             .desc {
-              width: 3.78rem;
               font-size: 0.24rem;
+              height: 0.67rem;
               font-family: Microsoft YaHei;
               font-weight: 400;
               line-height: 0.36rem;
@@ -617,7 +631,7 @@ export default {
           }
           p {
             position: relative;
-            bottom:0.7rem;
+            bottom: 0.7rem;
             font-size: 0.26rem;
             font-family: Microsoft YaHei;
             font-weight: 400;
